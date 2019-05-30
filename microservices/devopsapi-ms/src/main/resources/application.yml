@@ -1,0 +1,26 @@
++server:
+  port: 8889
+
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    hikari:
+      driver-class-name:  org.h2.Driver
+      username: sa
+      password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+   console:
+     enabled: true
+
+
+debug: true
+trace: false
+
+logging:
+ file: app.log
+ pattern:
+       console: "%date{ISO8601} |contactus-ms| |%thread| |%-5level| |%file:%line %M| - %msg %n"
+       file: "%date{ISO8601} %-5level [%thread] [%file:%line %M] - %msg %n"
