@@ -1,0 +1,22 @@
+server:
+  port: 8888
+zuul:
+  routes:
+     devopsapi:
+       path: /devopsapi/**
+       url: http://localhost:8889/
+
+
+debug: true
+trace: false
+
+logging:
+ file: app.log
+ pattern:
+       console: "%date{ISO8601} |contactus-ms| |%thread| |%-5level| |%file:%line %M| - %msg %n"
+       file: "%date{ISO8601} %-5level [%thread] [%file:%line %M] - %msg %n"
+ level:
+   org:
+    springframework:
+        cloud:
+          netflix: trace
