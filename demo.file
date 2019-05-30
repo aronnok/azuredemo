@@ -1,0 +1,8 @@
+kubectl create secret demo-secret --docker-server 
+--docker-username $CLIENT_ID \
+--docker-password $SP_PASSWD \
+--docker-email EMAIL-ADDRESS
+
+
+
+kubectl expose deployment devops-api-ms --type=LoadBalancer --port=8889 --target-port=8889
