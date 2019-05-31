@@ -1,3 +1,23 @@
+az aks get-credentials --resource-group DefaultResourceGroup-EUS --name demo2
+az aks browse --resource-group DefaultResourceGroup-EUS --name demo2
+
+
+az ad sp create-for-rbac  --scopes /subscriptions/asd6/resourcegroups/<RG_NAME>/providers/Microsoft.ContainerRegistry/registries/demoazureregistry --role Contributor --name demoazureregistry
+
+az acr create --name demo.azure.registry --resource-group DefaultResourceGroup-EUS --sku Basic
+
+az aks browse --resource-group DefaultResourceGroup-EUS --name demo2
+$env:path += 'C:\Users\imzmr\.azure-kubectl'
+az aks browse --resource-group DefaultResourceGroup-EUS --name demo2
+
+
+az acr login --name <acrName>
+
+docker login demoazureregistry -u /subscriptions/fec8b339-4ad8-4313-9ce8-101211303a36/resourceGroups/DefaultResourceGroup-EUS/providers/Microsoft.ContainerRegistry/registries/
+demoazureregistry
+
+
+
 kubectl create secret demo-secret --docker-server 
 --docker-username $CLIENT_ID \
 --docker-password $SP_PASSWD \

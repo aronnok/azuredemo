@@ -4,7 +4,7 @@ zuul:
   routes:
      devopsapi:
        path: /devopsapi/**
-       url: http://localhost:8889/
+       url: http://devops-api-ms:8889/
 
 
 debug: true
