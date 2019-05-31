@@ -9,16 +9,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-
 variables:
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '{{ containerRegistryConnection.Id }}'
-  imageRepository: '{{#toAlphaNumericString imageRepository 50}}{{/toAlphaNumericString}}'
-  containerRegistry: '{{ containerRegistryConnection.Authorization.Parameters.loginServer }}'
-  dockerfilePath: '{{ dockerfilePath }}'
   tag: '$(Build.BuildId)'
-
-
+  #Agent.BuildDirectory: microservices/gateway-ms
 
 
 steps:
@@ -32,6 +25,13 @@ steps:
     csmFileLink: 'https://raw.githubusercontent.com/Microsoft/devops-project-samples/057f6cc268a62922d012067d069d58684e967d0a/armtemplates/webapp-containers/containerRegistry-template.json'
     overrideParameters: '-registryName "palebluedotstardust" -registryLocation "East US" -registrySku "Standard"'
 
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: microservices/gateway-ms
+    contents: '**' 
+    targetFolder: .
+    overWrite: true
+    #flattenFolders: false # Optional
 
 - task: Maven@3
   inputs:
