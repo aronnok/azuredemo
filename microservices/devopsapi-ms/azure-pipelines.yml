@@ -19,9 +19,6 @@ variables:
   tag: '$(Build.BuildId)'
 
 
-
-
-
 steps:
 - task: AzureResourceGroupDeployment@2
   displayName: 'Azure Deployment:Create Azure Container Registry'
@@ -33,6 +30,14 @@ steps:
     csmFileLink: 'https://raw.githubusercontent.com/Microsoft/devops-project-samples/057f6cc268a62922d012067d069d58684e967d0a/armtemplates/webapp-containers/containerRegistry-template.json'
     overrideParameters: '-registryName "palebluedotstardust" -registryLocation "East US" -registrySku "Standard"'
 
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: microservices/devopsapi-ms
+    contents: '**' 
+    targetFolder: .
+    overWrite: true
+    #flattenFolders: false # Optional
 
 - task: Maven@3
   inputs:
