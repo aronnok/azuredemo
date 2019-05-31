@@ -11,7 +11,8 @@ pool:
 
 variables:
   tag: '$(Build.BuildId)'
-  System.DefaultWorkingDirectory: microservices/gateway-ms
+  Agent.BuildDirectory: microservices/gateway-ms
+
 
 steps:
 - task: AzureResourceGroupDeployment@2
