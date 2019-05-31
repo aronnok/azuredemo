@@ -8,7 +8,7 @@ USER root
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk     
 
 COPY . .
-COPY  --from=build-env  ./target/gateway-ms-0.0.1.jar gateway.jar
+COPY   ./target/gateway-ms-0.0.1.jar gateway.jar
 RUN sh -c  'touch  gateway.jar'
 ENTRYPOINT ["java","-jar","gateway.jar"]
 
