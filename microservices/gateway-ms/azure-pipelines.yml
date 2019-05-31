@@ -10,12 +10,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '{{ containerRegistryConnection.Id }}'
-  imageRepository: '{{#toAlphaNumericString imageRepository 50}}{{/toAlphaNumericString}}'
-  containerRegistry: '{{ containerRegistryConnection.Authorization.Parameters.loginServer }}'
-  dockerfilePath: '{{ dockerfilePath }}'
   tag: '$(Build.BuildId)'
+  System.DefaultWorkingDirectory: microservices/gateway-ms
 
 steps:
 - task: AzureResourceGroupDeployment@2
