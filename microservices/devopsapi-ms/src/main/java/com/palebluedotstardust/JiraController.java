@@ -24,6 +24,13 @@ public class JiraController {
 
     }
 
+    @RequestMapping("/testnew")
+    public String testAPI(){
+
+        return "This is new test API!";
+
+    }
+
     @RequestMapping(
             value = "findall",
             method = RequestMethod.GET,
