@@ -7,7 +7,7 @@ USER root
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk     
 
-COPY gateway-ms-0.0.1.jar gateway.jar
+COPY --from=publish gateway-ms-0.0.1.jar gateway.jar
 RUN sh -c  'touch  gateway.jar'
 ENTRYPOINT ["java","-jar","gateway.jar"]
 
