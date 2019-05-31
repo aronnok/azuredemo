@@ -1,0 +1,52 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '{{ containerRegistryConnection.Id }}'
+  imageRepository: '{{#toAlphaNumericString imageRepository 50}}{{/toAlphaNumericString}}'
+  containerRegistry: '{{ containerRegistryConnection.Authorization.Parameters.loginServer }}'
+  dockerfilePath: '{{ dockerfilePath }}'
+  tag: '$(Build.BuildId)'
+
+
+
+
+
+steps:
+- task: AzureResourceGroupDeployment@2
+  displayName: 'Azure Deployment:Create Azure Container Registry'
+  inputs:
+    azureSubscription: 'demo2 - Service Endpoint'
+    resourceGroupName: 'DefaultResourceGroup-EUS'
+    location: eastus
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/Microsoft/devops-project-samples/057f6cc268a62922d012067d069d58684e967d0a/armtemplates/webapp-containers/containerRegistry-template.json'
+    overrideParameters: '-registryName "palebluedotstardust" -registryLocation "East US" -registrySku "Standard"'
+
+
+- task: Maven@3
+  inputs:
+      mavenPomFile: 'pom.xml'
+      mavenOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.8'
+      jdkArchitectureOption: 'x64'
+      publishJUnitResults: false
+      goals: 'package'
+
+
+- task: Docker@2
+  displayName: buildAndPush
+  inputs:
+    containerRegistry: palebluedotstardust
+    repository: 'devops-api-ms'
