@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "49e79f39-5d18-4823-a957-c9602c261f4b",
+		"name": "Kubernates-Microservice-POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Gateway-MS",
+			"description": "",
+			"item": [
+				{
+					"name": "http://40.85.186.135:8888/devopsapi/findall",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://40.85.186.135:8888/devopsapi/findall",
+							"protocol": "http",
+							"host": [
+								"40",
+								"85",
+								"186",
+								"135"
+							],
+							"port": "8888",
+							"path": [
+								"devopsapi",
+								"findall"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API-MS",
+			"description": "",
+			"item": [
+				{
+					"name": "http://138.91.114.113:8889/findall",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://138.91.114.113:8889/findall",
+							"protocol": "http",
+							"host": [
+								"138",
+								"91",
+								"114",
+								"113"
+							],
+							"port": "8889",
+							"path": [
+								"findall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://138.91.114.113:8889/addone",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \n        \"ticketNumber\": \"J1asdasd111\",\n        \"description\": \"Complex Simple Jira\"\n    }"
+						},
+						"url": {
+							"raw": "http://138.91.114.113:8889/addone",
+							"protocol": "http",
+							"host": [
+								"138",
+								"91",
+								"114",
+								"113"
+							],
+							"port": "8889",
+							"path": [
+								"addone"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

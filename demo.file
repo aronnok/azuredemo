@@ -26,3 +26,8 @@ kubectl create secret demo-secret --docker-server
 
 
 kubectl expose deployment devops-api-ms --type=LoadBalancer --port=8889 --target-port=8889
+
+kubectl expose deployment gateway-ms --type=LoadBalancer --port=8888 --target-port=8888
+
+To Test the POC working, please load the Kubernates-Microservices-POC.postman_collection.json in Postman. 
+All the working API is listed over there. 
