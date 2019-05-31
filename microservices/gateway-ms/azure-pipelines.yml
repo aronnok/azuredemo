@@ -9,7 +9,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '{{ containerRegistryConnection.Id }}'
@@ -17,9 +16,6 @@ variables:
   containerRegistry: '{{ containerRegistryConnection.Authorization.Parameters.loginServer }}'
   dockerfilePath: '{{ dockerfilePath }}'
   tag: '$(Build.BuildId)'
-
-
-
 
 steps:
 - task: AzureResourceGroupDeployment@2
