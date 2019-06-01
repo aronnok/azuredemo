@@ -17,6 +17,12 @@ variables:
   containerRegistry: '{{ containerRegistryConnection.Authorization.Parameters.loginServer }}'
   dockerfilePath: '{{ dockerfilePath }}'
   tag: '$(Build.BuildId)'
+  azureSubscription: 'demo2 - Service Endpoint'
+  resourceGroupName: 'DefaultResourceGroup-EUS'
+  kubernetesCluster: 'demo2'
+  k8sNamespace: default
+  azureResourceGroup: DefaultResourceGroup-EUS
+  azureSubscriptionEndpoint: 'demo2 - Service Endpoint'
 
 
 steps:
