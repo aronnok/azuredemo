@@ -17,9 +17,16 @@ variables:
   containerRegistry: '{{ containerRegistryConnection.Authorization.Parameters.loginServer }}'
   dockerfilePath: '{{ dockerfilePath }}'
   tag: '$(Build.BuildId)'
+  azureSubscription: 'demo2 - Service Endpoint'
+  resourceGroupName: 'DefaultResourceGroup-EUS'
+  kubernetesCluster: 'demo2'
+  k8sNamespace: default
+  azureResourceGroup: DefaultResourceGroup-EUS
+  azureSubscriptionEndpoint: 'demo2 - Service Endpoint'
 
 
 steps:
+
 - task: AzureResourceGroupDeployment@2
   displayName: 'Azure Deployment:Create Azure Container Registry'
   inputs:
@@ -30,28 +37,13 @@ steps:
     csmFileLink: 'https://raw.githubusercontent.com/Microsoft/devops-project-samples/057f6cc268a62922d012067d069d58684e967d0a/armtemplates/webapp-containers/containerRegistry-template.json'
     overrideParameters: '-registryName "palebluedotstardust" -registryLocation "East US" -registrySku "Standard"'
 
-
-- task: CopyFiles@2
+  
+- task: Kubernetes@1
+  displayName: kubectl deploy devops-ops-api
   inputs:
-    sourceFolder: microservices/devopsapi-ms
-    contents: '**' 
-    targetFolder: .
-    overWrite: true
-    #flattenFolders: false # Optional
-
-- task: Maven@3
-  inputs:
-      mavenPomFile: 'pom.xml'
-      mavenOptions: '-Xmx3072m'
-      javaHomeOption: 'JDKVersion'
-      jdkVersionOption: '1.8'
-      jdkArchitectureOption: 'x64'
-      publishJUnitResults: false
-      goals: 'package'
-
-
-- task: Docker@2
-  displayName: buildAndPush
-  inputs:
-    containerRegistry: palebluedotstardust
-    repository: 'devops-api-ms'
+    connectionType: Azure Resource Manager
+    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    azureResourceGroup: $(azureResourceGroup)
+    kubernetesCluster: $(kubernetesCluster)
+    command: apply
+    arguments:  --force -f api-deployment.yml
