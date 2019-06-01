@@ -25,11 +25,13 @@ public class Controller {
 
     @RequestMapping("/testnew")
     public String testAPI(){
-
         return "This is new test API from Gateway-MS!";
 
     }
 
-    
 
-}
+     @RequestMapping("/api3")
+     public String anotherAPI(){
+         return "This is new test API 3 from Gateway-MS!";
+
+}    }
