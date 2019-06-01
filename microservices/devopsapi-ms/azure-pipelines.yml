@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- devopsapi
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -17,6 +17,12 @@ variables:
   containerRegistry: '{{ containerRegistryConnection.Authorization.Parameters.loginServer }}'
   dockerfilePath: '{{ dockerfilePath }}'
   tag: '$(Build.BuildId)'
+  azureSubscription: 'demo2 - Service Endpoint'
+  resourceGroupName: 'DefaultResourceGroup-EUS'
+  kubernetesCluster: 'demo2'
+  k8sNamespace: default
+  azureResourceGroup: DefaultResourceGroup-EUS
+  azureSubscriptionEndpoint: 'demo2 - Service Endpoint'
 
 
 steps:
@@ -55,3 +61,17 @@ steps:
   inputs:
     containerRegistry: palebluedotstardust
     repository: 'devops-api-ms'
+    tags: |
+       $(Build.BuildId)
+       latest
+
+- task: Kubernetes@1
+  displayName: kubectl deploy devops-ops-api
+  inputs:
+    connectionType: Azure Resource Manager
+    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    azureResourceGroup: $(azureResourceGroup)
+    kubernetesCluster: $(kubernetesCluster)
+    command: apply
+    arguments:  --force -f api-deployment.yml
+
