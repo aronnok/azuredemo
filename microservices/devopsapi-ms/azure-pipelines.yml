@@ -45,5 +45,5 @@ steps:
     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
     azureResourceGroup: $(azureResourceGroup)
     kubernetesCluster: $(kubernetesCluster)
-    command: replace
+    command: apply
     arguments: deployment --force -f api-deployment.yml
