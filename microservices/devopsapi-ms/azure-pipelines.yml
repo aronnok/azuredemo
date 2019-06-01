@@ -25,7 +25,7 @@ steps:
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'
-    azureSubscriptionEndpoint: 'Free Trial (fec8b339-4ad8-4313-9ce8-101211303a36)'
+    azureSubscriptionEndpoint: 'fec8b339-4ad8-4313-9ce8-101211303a36'
     command: delete deployment devops-api-ms
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
