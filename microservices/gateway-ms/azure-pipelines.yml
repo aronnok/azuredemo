@@ -49,3 +49,17 @@ steps:
   inputs:
     containerRegistry: palebluedotstardust
     repository: 'gateway-ms'
+    tags: |
+       $(Build.BuildId)
+       latest
+
+- task: Kubernetes@1
+  displayName: kubectl deploy gateway-ms
+  inputs:
+    connectionType: Azure Resource Manager
+    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    azureResourceGroup: $(azureResourceGroup)
+    kubernetesCluster: $(kubernetesCluster)
+    command: apply
+    arguments:  --force -f gateway-deployment.yml
+
