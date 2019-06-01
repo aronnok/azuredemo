@@ -45,4 +45,4 @@ steps:
     azureResourceGroup: $(azureResourceGroup)
     kubernetesCluster: $(kubernetesCluster)
     command: delete
-    arguments: deployment devopsapi-ms
+    arguments: deployment devops-api-ms
