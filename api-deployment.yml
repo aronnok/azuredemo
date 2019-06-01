@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: devops-api-ms
-        image: palebluedotstardust.azurecr.io/devops-api-ms:71
+        image: palebluedotstardust.azurecr.io/devops-api-ms:latest
         ports:
          - containerPort: 8889
       imagePullSecrets:
