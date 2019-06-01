@@ -12,6 +12,12 @@ pool:
 variables:
   tag: '$(Build.BuildId)'
   #Agent.BuildDirectory: microservices/gateway-ms
+  azureSubscription: 'demo2 - Service Endpoint'
+  resourceGroupName: 'DefaultResourceGroup-EUS'
+  kubernetesCluster: 'demo2'
+  k8sNamespace: default
+  azureResourceGroup: DefaultResourceGroup-EUS
+  azureSubscriptionEndpoint: 'demo2 - Service Endpoint'
 
 
 steps:
