@@ -46,4 +46,4 @@ steps:
     azureResourceGroup: $(azureResourceGroup)
     kubernetesCluster: $(kubernetesCluster)
     command: apply
-    arguments: deployment --force -f api-deployment.yml
+    arguments:  --force -f api-deployment.yml
