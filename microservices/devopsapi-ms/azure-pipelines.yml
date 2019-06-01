@@ -46,7 +46,8 @@ steps:
     kubernetesCluster: $(kubernetesCluster)
     command: delete
     arguments: deployment devops-api-ms
-
+  condition: succeededOrFailed()
+  
 - task: Kubernetes@1
   displayName: kubectl deploy devops-ops-api
   inputs:
