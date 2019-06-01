@@ -22,6 +22,7 @@ variables:
   kubernetesCluster: 'demo2'
   k8sNamespace: default
   azureResourceGroup: DefaultResourceGroup-EUS
+  azureSubscriptionEndpoint: 'demo2 - Service Endpoint'
 
 
 steps:
