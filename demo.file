@@ -13,8 +13,6 @@ az aks browse --resource-group DefaultResourceGroup-EUS --name demo2
 
 az acr login --name <acrName>
 
-docker login demoazureregistry -u /subscriptions/fec8b339-4ad8-4313-9ce8-101211303a36/resourceGroups/DefaultResourceGroup-EUS/providers/Microsoft.ContainerRegistry/registries/
-demoazureregistry
 
 
 
