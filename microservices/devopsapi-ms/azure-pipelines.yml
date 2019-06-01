@@ -62,7 +62,7 @@ steps:
     containerRegistry: palebluedotstardust
     repository: 'devops-api-ms'
     tags: |
-      '$(Build.BuildId)'
+       $(Build.BuildId)
        latest
 
 - task: Kubernetes@1
