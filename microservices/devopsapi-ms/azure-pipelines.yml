@@ -17,41 +17,15 @@ variables:
   containerRegistry: '{{ containerRegistryConnection.Authorization.Parameters.loginServer }}'
   dockerfilePath: '{{ dockerfilePath }}'
   tag: '$(Build.BuildId)'
-
+  azureSubscription: 'demo2 - Service Endpoint'
+  resourceGroupName: 'DefaultResourceGroup-EUS'
+  kubernetesCluster: 'demo2'
 
 steps:
-- task: AzureResourceGroupDeployment@2
-  displayName: 'Azure Deployment:Create Azure Container Registry'
+- task: Kubernetes@1
   inputs:
-    azureSubscription: 'demo2 - Service Endpoint'
-    resourceGroupName: 'DefaultResourceGroup-EUS'
-    location: eastus
-    templateLocation: 'URL of the file'
-    csmFileLink: 'https://raw.githubusercontent.com/Microsoft/devops-project-samples/057f6cc268a62922d012067d069d58684e967d0a/armtemplates/webapp-containers/containerRegistry-template.json'
-    overrideParameters: '-registryName "palebluedotstardust" -registryLocation "East US" -registrySku "Standard"'
-
-
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: microservices/devopsapi-ms
-    contents: '**' 
-    targetFolder: .
-    overWrite: true
-    #flattenFolders: false # Optional
-
-- task: Maven@3
-  inputs:
-      mavenPomFile: 'pom.xml'
-      mavenOptions: '-Xmx3072m'
-      javaHomeOption: 'JDKVersion'
-      jdkVersionOption: '1.8'
-      jdkArchitectureOption: 'x64'
-      publishJUnitResults: false
-      goals: 'package'
-
-
-- task: Docker@2
-  displayName: buildAndPush
-  inputs:
-    containerRegistry: palebluedotstardust
-    repository: 'devops-api-ms'
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'Free Trial (fec8b339-4ad8-4313-9ce8-101211303a36)'
+    command: delete deployment devops-api-ms
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
