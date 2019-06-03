@@ -29,3 +29,27 @@ kubectl expose deployment gateway-ms --type=LoadBalancer --port=8888 --target-po
 
 To Test the POC working, please load the Kubernates-Microservices-POC.postman_collection.json in Postman. 
 All the working API is listed over there. 
+
+############################
+
+1. Demoing API for microservices, overview the previous demo
+2. Making APIs with called DevOps-API 
+3. Making Gateway that will route the API calls to DevOPs-API
+   Here are the actual code in the repo
+4. There are 3 branches in the repo which are used. 
+gateway-ms and devopsapi. 
+5. If the code is pushed to gateway branch the code will trigger the pipeline 
+job of gateway-ms. 
+6. It will 
+     -checkout the code
+     -build the artifact using maven
+     -Build a docker image from Dockerfile
+     - Push the image to registry
+     - Tag the image with both latest and build
+     - Apply the Kubernetes deployment of this image from the registry 
+
+ 7. In kubernetes we have both deployments and services 
+ 8. Demo the logs in kubernetes 
+ 9. Demo how code propagates to kubernetes 
+ 10. Create new APIs and demo it 
+ 11. Call the API to live demo it 
