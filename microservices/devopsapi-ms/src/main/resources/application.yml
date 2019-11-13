@@ -15,6 +15,9 @@ spring:
    console:
      enabled: true
 
+redis:
+  port: 6379
+  host: 192.168.168.133
 
 debug: true
 trace: false
@@ -22,5 +25,5 @@ trace: false
 logging:
  file: app.log
  pattern:
-       console: "%date{ISO8601} |contactus-ms| |%thread| |%-5level| |%file:%line %M| - %msg %n"
+       console: "%date{ISO8601} |devops-api-ms| |%thread| |%-5level| |%file:%line %M| - %msg %n"
        file: "%date{ISO8601} %-5level [%thread] [%file:%line %M] - %msg %n"

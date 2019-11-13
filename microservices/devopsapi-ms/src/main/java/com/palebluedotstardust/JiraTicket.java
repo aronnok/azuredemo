@@ -3,10 +3,11 @@ package com.palebluedotstardust;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="jiratickets")
-public class JiraTicket {
+public class JiraTicket implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
