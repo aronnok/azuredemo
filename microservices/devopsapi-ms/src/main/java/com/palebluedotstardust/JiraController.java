@@ -32,8 +32,7 @@ public class JiraController {
         return "ping!";
     }
 
-    @RequestMapping(
-            value = "findall",
+    @RequestMapping( value = "findall",
             method = RequestMethod.GET,
             produces = {MimeTypeUtils.APPLICATION_JSON_VALUE},
             headers =  "Accept=application/json")
@@ -44,16 +43,25 @@ public class JiraController {
     }
 
 
-    @RequestMapping(
-            value = "addone",
+    @RequestMapping( value = "findallFromRedis",
+            method = RequestMethod.GET,
+            produces = {MimeTypeUtils.APPLICATION_JSON_VALUE},
+            headers =  "Accept=application/json")
+    public ResponseEntity<Iterable<JiraTicket>> getAllJiraTicketsFromRedis(){
+
+
+        return new ResponseEntity<Iterable<JiraTicket>>(redisTicketRepo.findAll(), HttpStatus.OK);
+    }
+
+
+    @RequestMapping( value = "addone",
             method = RequestMethod.POST
-            )
+    )
     public ResponseEntity<Iterable<JiraTicket>> addOne(@RequestBody  JiraTicket oneTicket){
 
         System.out.println(oneTicket.toString());
 
         oneTicket = repo.save(oneTicket);
-
 
         logger.info(" ID ="+oneTicket.getId() +" Check if non null");
         redisTicketRepo.save(oneTicket);

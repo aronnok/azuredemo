@@ -15,7 +15,7 @@ public class RedisProvider {
 
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {
-        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration("jira-redis", 6379);
+        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration("jira.redis", 6379);
         redisStandaloneConfiguration.setPassword(RedisPassword.of("password"));
         return new JedisConnectionFactory(redisStandaloneConfiguration);
     }
